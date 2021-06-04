@@ -1,9 +1,0 @@
-D:\Coding\MediatR-Demo\src\IncidentCreator.Models\bin\Debug\netcoreapp3.1\IncidentCreator.Models.deps.json
-D:\Coding\MediatR-Demo\src\IncidentCreator.Models\bin\Debug\netcoreapp3.1\IncidentCreator.Models.dll
-D:\Coding\MediatR-Demo\src\IncidentCreator.Models\bin\Debug\netcoreapp3.1\IncidentCreator.Models.pdb
-D:\Coding\MediatR-Demo\src\IncidentCreator.Models\obj\Debug\netcoreapp3.1\IncidentCreator.Models.csprojAssemblyReference.cache
-D:\Coding\MediatR-Demo\src\IncidentCreator.Models\obj\Debug\netcoreapp3.1\IncidentCreator.Models.AssemblyInfoInputs.cache
-D:\Coding\MediatR-Demo\src\IncidentCreator.Models\obj\Debug\netcoreapp3.1\IncidentCreator.Models.AssemblyInfo.cs
-D:\Coding\MediatR-Demo\src\IncidentCreator.Models\obj\Debug\netcoreapp3.1\IncidentCreator.Models.csproj.CoreCompileInputs.cache
-D:\Coding\MediatR-Demo\src\IncidentCreator.Models\obj\Debug\netcoreapp3.1\IncidentCreator.Models.dll
-D:\Coding\MediatR-Demo\src\IncidentCreator.Models\obj\Debug\netcoreapp3.1\IncidentCreator.Models.pdb
