@@ -1,0 +1,15 @@
+D:\Coding\MediatR-Demo\src\IncidentCreator.Data\bin\Debug\netcoreapp3.1\IncidentCreator.Data.deps.json
+D:\Coding\MediatR-Demo\src\IncidentCreator.Data\bin\Debug\netcoreapp3.1\IncidentCreator.Data.runtimeconfig.json
+D:\Coding\MediatR-Demo\src\IncidentCreator.Data\bin\Debug\netcoreapp3.1\IncidentCreator.Data.runtimeconfig.dev.json
+D:\Coding\MediatR-Demo\src\IncidentCreator.Data\bin\Debug\netcoreapp3.1\IncidentCreator.Data.dll
+D:\Coding\MediatR-Demo\src\IncidentCreator.Data\bin\Debug\netcoreapp3.1\IncidentCreator.Data.pdb
+D:\Coding\MediatR-Demo\src\IncidentCreator.Data\bin\Debug\netcoreapp3.1\IncidentCreator.Models.dll
+D:\Coding\MediatR-Demo\src\IncidentCreator.Data\bin\Debug\netcoreapp3.1\IncidentCreator.Models.pdb
+D:\Coding\MediatR-Demo\src\IncidentCreator.Data\obj\Debug\netcoreapp3.1\IncidentCreator.Data.csprojAssemblyReference.cache
+D:\Coding\MediatR-Demo\src\IncidentCreator.Data\obj\Debug\netcoreapp3.1\IncidentCreator.Data.AssemblyInfoInputs.cache
+D:\Coding\MediatR-Demo\src\IncidentCreator.Data\obj\Debug\netcoreapp3.1\IncidentCreator.Data.AssemblyInfo.cs
+D:\Coding\MediatR-Demo\src\IncidentCreator.Data\obj\Debug\netcoreapp3.1\IncidentCreator.Data.csproj.CoreCompileInputs.cache
+D:\Coding\MediatR-Demo\src\IncidentCreator.Data\obj\Debug\netcoreapp3.1\IncidentCreator.Data.csproj.CopyComplete
+D:\Coding\MediatR-Demo\src\IncidentCreator.Data\obj\Debug\netcoreapp3.1\IncidentCreator.Data.dll
+D:\Coding\MediatR-Demo\src\IncidentCreator.Data\obj\Debug\netcoreapp3.1\IncidentCreator.Data.pdb
+D:\Coding\MediatR-Demo\src\IncidentCreator.Data\obj\Debug\netcoreapp3.1\IncidentCreator.Data.genruntimeconfig.cache

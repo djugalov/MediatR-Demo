@@ -1,0 +1,41 @@
+﻿namespace IncidentCreator.BL.Command.Incidents
+{
+    using IncidentCreator.Data.Database;
+    using IncidentCreator.Data.Models;
+    using MediatR;
+    using Microsoft.EntityFrameworkCore;
+    using System;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+
+    public class CreateIncidentCommandHandler : IRequestHandler<CreateIncidentCommand, Incident>
+    {
+        private readonly IncidentCreatorDbContext _context;
+
+        public CreateIncidentCommandHandler(IncidentCreatorDbContext context)
+        {
+            _context = context;
+        }
+        public async Task<Incident> Handle(CreateIncidentCommand request, CancellationToken cancellationToken)
+        {
+            try
+            {
+                var incident = await _context.Incidents.AddAsync(request.Incident, cancellationToken);
+                foreach (var productID in request.AffectedProductsIDs)
+                {
+                    var product = await _context.Products.FirstOrDefaultAsync(x => x.ID == productID);
+
+                    product.Incident = incident.Entity;
+                    product.IsUnderIncident = true;
+                }
+                await _context.SaveChangesAsync(cancellationToken);
+                return incident.Entity;
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"{nameof(request.Incident)} could not be saved: {e.Message}");
+            }
+        }
+    }
+}
