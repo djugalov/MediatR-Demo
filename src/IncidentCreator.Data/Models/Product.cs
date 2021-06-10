@@ -1,6 +1,7 @@
 ﻿namespace IncidentCreator.Data.Models
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     public class Product
@@ -12,7 +13,6 @@
         public string Name { get; set; }
         [Column("is_under_incident")]
         public bool IsUnderIncident { get; set; }
-        [ForeignKey("incident_id")]
-        public virtual Incident Incident { get; set; }
+        public virtual ICollection<IncidentProductMap> Incidents { get; set; }
     }
 }

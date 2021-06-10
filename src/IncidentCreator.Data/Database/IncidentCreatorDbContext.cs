@@ -10,6 +10,7 @@
         }
         public DbSet<Incident> Incidents { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<IncidentProductMap> IncidentProductMaps { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

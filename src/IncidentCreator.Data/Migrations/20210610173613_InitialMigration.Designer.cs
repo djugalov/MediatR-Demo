@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IncidentCreator.Data.Migrations
 {
     [DbContext(typeof(IncidentCreatorDbContext))]
-    [Migration("20210604054938_InitialMigration")]
+    [Migration("20210610173613_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,23 +25,50 @@ namespace IncidentCreator.Data.Migrations
                 {
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("id");
 
                     b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasColumnName("end_date");
 
                     b.Property<int>("Impact")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("impact");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("name");
 
                     b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasColumnName("start_date");
 
                     b.HasKey("ID");
 
                     b.ToTable("Incidents");
+                });
+
+            modelBuilder.Entity("IncidentCreator.Data.Models.IncidentProductMap", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("id");
+
+                    b.Property<Guid?>("incident_id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("product_id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("incident_id");
+
+                    b.HasIndex("product_id");
+
+                    b.ToTable("IncidentProductMaps");
                 });
 
             modelBuilder.Entity("IncidentCreator.Data.Models.Product", b =>
@@ -59,48 +86,54 @@ namespace IncidentCreator.Data.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("name");
 
-                    b.Property<Guid?>("incident_id")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("ID");
-
-                    b.HasIndex("incident_id");
 
                     b.ToTable("Products");
 
                     b.HasData(
                         new
                         {
-                            ID = new Guid("8770e553-7b59-41d7-8f57-5a8cfe510b1f"),
+                            ID = new Guid("c4ec0869-11aa-43c3-a338-d6f813aba2b1"),
                             IsUnderIncident = false,
                             Name = "TestProduct-1"
                         },
                         new
                         {
-                            ID = new Guid("c92f276a-5f2a-455b-9e34-af11cfd4c025"),
+                            ID = new Guid("5b99a661-1421-498c-b2aa-9f764dfee832"),
                             IsUnderIncident = false,
                             Name = "TestProduct-2"
                         },
                         new
                         {
-                            ID = new Guid("6b6b4d3b-0ff1-4002-8236-d24aa3c6fd98"),
+                            ID = new Guid("e88fc724-7427-4e48-8b7d-0b702ec2deab"),
                             IsUnderIncident = false,
                             Name = "TestProduct-3"
                         });
                 });
 
-            modelBuilder.Entity("IncidentCreator.Data.Models.Product", b =>
+            modelBuilder.Entity("IncidentCreator.Data.Models.IncidentProductMap", b =>
                 {
                     b.HasOne("IncidentCreator.Data.Models.Incident", "Incident")
                         .WithMany("Products")
                         .HasForeignKey("incident_id");
 
+                    b.HasOne("IncidentCreator.Data.Models.Product", "Product")
+                        .WithMany("Incidents")
+                        .HasForeignKey("product_id");
+
                     b.Navigation("Incident");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("IncidentCreator.Data.Models.Incident", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("IncidentCreator.Data.Models.Product", b =>
+                {
+                    b.Navigation("Incidents");
                 });
 #pragma warning restore 612, 618
         }

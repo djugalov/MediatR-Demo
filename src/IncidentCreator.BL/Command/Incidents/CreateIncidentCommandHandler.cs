@@ -22,14 +22,20 @@
             try
             {
                 var incident = await _context.Incidents.AddAsync(request.Incident, cancellationToken);
+
                 foreach (var productID in request.AffectedProductsIDs)
                 {
                     var product = await _context.Products.FirstOrDefaultAsync(x => x.ID == productID);
 
-                    product.Incident = incident.Entity;
-                    product.IsUnderIncident = true;
+                    if (product != null)
+                    {
+                        await _context.IncidentProductMaps.AddAsync(new IncidentProductMap { Incident = incident.Entity, Product = product });
+
+                        product.IsUnderIncident = true;
+                    }
                 }
                 await _context.SaveChangesAsync(cancellationToken);
+
                 return incident.Entity;
             }
             catch (Exception e)

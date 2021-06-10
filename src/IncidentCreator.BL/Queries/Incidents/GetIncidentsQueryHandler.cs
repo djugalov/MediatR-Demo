@@ -15,7 +15,7 @@
         {
             _context = context;
         }
-        public async Task<IReadOnlyCollection<Incident>> Handle(GetIncidentsQuery request, CancellationToken cancellationToken) =>
-            await _context.Incidents.ToListAsync(cancellationToken: cancellationToken);
+        public async Task<IReadOnlyCollection<Incident>> Handle(GetIncidentsQuery request, CancellationToken cancellationToken)
+            => await _context.Incidents.ToListAsync(cancellationToken: cancellationToken);
     }
 }
