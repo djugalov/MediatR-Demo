@@ -29,7 +29,7 @@ namespace IncidentCreator.Application
 
             services.AddAutoMapper(typeof(Startup));
 
-            services.AddMediatR(Assembly.GetExecutingAssembly());
+            services.AddMediatR(typeof(BL.Command.Incidents.CreateIncidentCommand));
 
             services.AddSwaggerGen(c =>
             {
