@@ -13,6 +13,5 @@
         public string Name { get; set; }
         [Column("is_under_incident")]
         public bool IsUnderIncident { get; set; }
-        public virtual ICollection<IncidentProductMap> Incidents { get; set; }
     }
 }

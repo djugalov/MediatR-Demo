@@ -11,7 +11,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class IncidentController : ControllerBase
     {
@@ -27,8 +27,21 @@
         [HttpGet]
         public async Task<ActionResult<IReadOnlyCollection<Incident>>> GetIncidents() => Ok(await _mediator.Send(new GetIncidentsQuery { }));
 
+        [HttpGet]
+        public async Task<ActionResult<Incident>> GetIncidentByID(Guid id)
+        {
+            try
+            {
+                return Ok(await _mediator.Send(new GetIncidentByIdQuery { ID = id }));
+            }
+            catch (ArgumentException e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
         [HttpPost]
-        public async Task<ActionResult<Guid>> CreateProduct(CreateIncidentDto createIncidentDto)
+        public async Task<ActionResult<Guid>> CreateIncident(CreateIncidentDto createIncidentDto)
         {
             try
             {

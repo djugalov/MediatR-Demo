@@ -19,6 +19,5 @@
         public DateTime StartDate { get; set; }
         [Column("end_date")]
         public DateTime EndDate { get; set; } = DateTime.MaxValue;
-        public virtual ICollection<IncidentProductMap> Products { get; set; }
     }
 }
