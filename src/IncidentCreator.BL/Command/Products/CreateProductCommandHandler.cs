@@ -3,7 +3,6 @@
     using IncidentCreator.Data.Database;
     using IncidentCreator.Data.Models;
     using MediatR;
-    using System;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -16,16 +15,9 @@
         }
         public async Task<Product> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
-            try
-            {
-                var product = await _context.Products.AddAsync(request.Product, cancellationToken);
-                await _context.SaveChangesAsync(cancellationToken);
-                return product.Entity;
-            }
-            catch (Exception e)
-            {
-                throw new Exception($"{nameof(request.Product)} could not be saved: {e.Message}");
-            }
+            var product = await _context.Products.AddAsync(request.Product, cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
+            return product.Entity;
         }
     }
 }

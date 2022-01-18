@@ -43,19 +43,12 @@
         [HttpPost]
         public async Task<ActionResult<Guid>> CreateIncident(CreateIncidentDto createIncidentDto)
         {
-            try
+            var incident = await _mediator.Send(new CreateIncidentCommand
             {
-                var incident = await _mediator.Send(new CreateIncidentCommand
-                {
-                    Incident = _mapper.Map<Incident>(createIncidentDto),
-                    AffectedProductsIDs = createIncidentDto.AffectedProductsIDs
-                });
-                return incident.ID;
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
+                Incident = _mapper.Map<Incident>(createIncidentDto),
+                AffectedProductsIDs = createIncidentDto.AffectedProductsIDs
+            });
+            return incident.ID;
         }
     }
 }

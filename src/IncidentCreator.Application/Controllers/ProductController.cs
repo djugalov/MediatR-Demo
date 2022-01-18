@@ -29,15 +29,8 @@
         [HttpPost]
         public async Task<ActionResult<Guid>> CreateProduct(CreateProductDto createProductDto)
         {
-            try
-            {
-                var product = await _mediator.Send(new CreateProductCommand { Product = _mapper.Map<Product>(createProductDto) });
-                return product.ID;
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
+            var product = await _mediator.Send(new CreateProductCommand { Product = _mapper.Map<Product>(createProductDto) });
+            return product.ID;
         }
     }
 }

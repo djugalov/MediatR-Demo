@@ -4,8 +4,6 @@
     using IncidentCreator.Data.Models;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
-    using System;
-    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -19,29 +17,22 @@
         }
         public async Task<Incident> Handle(CreateIncidentCommand request, CancellationToken cancellationToken)
         {
-            try
-            {
-                var incident = await _context.Incidents.AddAsync(request.Incident, cancellationToken);
+            var incident = await _context.Incidents.AddAsync(request.Incident, cancellationToken);
 
-                foreach (var productID in request.AffectedProductsIDs)
+            foreach (var productID in request.AffectedProductsIDs)
+            {
+                var product = await _context.Products.FirstOrDefaultAsync(x => x.ID == productID);
+
+                if (product != null)
                 {
-                    var product = await _context.Products.FirstOrDefaultAsync(x => x.ID == productID);
+                    await _context.IncidentProductMaps.AddAsync(new IncidentProductMap { Incident = incident.Entity, Product = product });
 
-                    if (product != null)
-                    {
-                        await _context.IncidentProductMaps.AddAsync(new IncidentProductMap { Incident = incident.Entity, Product = product });
-
-                        product.IsUnderIncident = true;
-                    }
+                    product.IsUnderIncident = true;
                 }
-                await _context.SaveChangesAsync(cancellationToken);
+            }
+            await _context.SaveChangesAsync(cancellationToken);
 
-                return incident.Entity;
-            }
-            catch (Exception e)
-            {
-                throw new Exception($"{nameof(request.Incident)} could not be saved: {e.Message}");
-            }
+            return incident.Entity;
         }
     }
 }
